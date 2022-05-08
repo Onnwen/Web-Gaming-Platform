@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <title>Login</title>
+</head>
+
+<body>
+<div class="background">
+    <div class="a"></div>
+    <div class="a"></div>
+</div>
+<form>
+    <h3>Login</h3>
+    <label for="username">Username</label>
+    <input type="text" placeholder="Username" id="username" autocomplete="off">
+    <label for="password">Password</label>
+    <input type="password" placeholder="Password" id="password" autocomplete="off">
+    <button type="reset" id="submit">Login</button>
+    <button type="reset" class="other" onclick="window.location.href='register.html'">Crea account</button>
+</form>
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#submit").click(function (e) {
+            $.post("http://localhost:8080/gioco/api/login.php", {
+                username: $("#username").val(),
+                password: $("#password").val()
+            }, "json")
+                .fail(function () {
+                    alert("È stato riscontrato un errore inaspettato.");
+                })
+                .done(function (data) {
+                    var json = JSON.parse(data)
+                    if (json.exist) {
+                        sessionStorage.setItem('id', json.id)
+                        window.location.href = 'profile.html'
+                    } else {
+                        alert("Credenziali errate.");
+                    }
+                });
+        });
+    });
+</script>
+
+</html>

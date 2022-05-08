@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <title>Partita</title>
+</head>
+
+<body>
+<div class="background">
+    <div class="a"></div>
+    <div class="a"></div>
+</div>
+
+<form>
+    <h3>Partita</h3>
+    <br>
+    <p class="infotext">Data</p>
+    <h2 id="date">12 Maggio 2022</h2>
+    <br>
+
+    <p class="infotext">Stato</p>
+    <h2 id="status">In corso...</h2>
+    <br>
+
+    <div class="split2">
+        <div>
+            <p class="infotext">Tu</p>
+            <h2 id="username">Onnwen</h2>
+            <svg style="margin-bottom: 15px;" height="2" width="90%">
+                <defs>
+                    <linearGradient id="grad1" x1="-50%" y1="0%" x2="100%" y2="50%">
+                        <stop id="own_color_start" offset="0%" style="stop-color:#1845ad;stop-opacity:1" />
+                        <stop id="own_color_end" offset="100%" style="stop-color:#23a2f6;stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+                <rect width="90%" height="2" fill="url(#grad1)" />
+            </svg>
+            <p class="infotext">Longitudine</p>
+            <h2 style="margin-bottom: 10px;" id="own_longitude">43.12312</h2>
+            <p class="infotext">Latitudine</p>
+            <h2 id="own_latitude">32.21331</h2>
+        </div>
+        <div>
+            <p class="infotext">L'altro giocatore</p>
+            <h2 id="other_player_username">Fisnik</h2>
+            <svg style="margin-bottom: 15px;" height="2" width="90%">
+                <defs>
+                    <linearGradient id="grad1" x1="-50%" y1="0%" x2="100%" y2="50%">
+                        <stop id="other_player_color_start" offset="0%" style="stop-color:#ff512f;stop-opacity:1" />
+                        <stop id="other_player_color_end" offset="100%" style="stop-color:#f09819;stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+                <rect width="90%" height="2" fill="url(#grad1)" />
+            </svg>
+            <p class="infotext">Longitudine</p>
+            <h2 style="margin-bottom: 10px;" id="other_player_longitude">43.123532</h2>
+            <p class="infotext">Latitudine</p>
+            <h2 id="other_player_latitude">32.214594</h2>
+        </div>
+        <div class="clearer"></div>
+    </div>
+
+    <br>
+    <button type="reset" id="submit">Vinci</button>
+    <button type="reset" id="exit" class="other">Esci dalla partita</button>
+</form>
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script>
+    function onLoad() {
+        $.post("http://localhost:8080/gioco/api/getPartyData.php", {
+            party_id: sessionStorage.getItem('playing_party')
+        }, "json")
+            .fail(function () {
+                alert("È stato riscontrato un errore inaspettato.");
+            })
+            .done(function (data) {
+                var mesi = ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"]
+                var json = JSON.parse(data)
+                var date = json.started.split("-");
+                document.getElementById('date').textContent = parseInt(date[2]) + " " + mesi[parseInt(date[1])-1] + " " + date[0];
+                var ownIndex = (json.players[0].id == sessionStorage.getItem('id') == 0) ? 1 : 0;
+                var otherPlayerIndex = ownIndex ? 0 : 1;
+                document.getElementById('username').textContent = json.players[ownIndex].username;
+                document.getElementById('own_latitude').textContent = String(json.players[ownIndex].latitude).substring(0, 9);
+                document.getElementById('own_longitude').textContent = String(json.players[ownIndex].longitude).substring(0, 9);
+                document.getElementById('other_player_username').textContent = json.players[otherPlayerIndex].username;
+                document.getElementById('other_player_latitude').textContent = String(json.players[otherPlayerIndex].latitude).substring(0, 9);
+                document.getElementById('other_player_longitude').textContent = String(json.players[otherPlayerIndex].longitude).substring(0, 9);
+                if (ownIndex == 1) {
+                    document.getElementById("other_player_color_start").style = "stop-color:#1845ad; stop-opacity:1";
+                    document.getElementById("other_player_color_end").style = "stop-color:#23a2f6;s top-opacity:1";
+                    document.getElementById("own_color_start").style = "stop-color:#ff512f;stop-opacity:1";
+                    document.getElementById("own_color_end").style = "stop-color:#f09819;stop-opacity:1";
+                }
+            });
+    }
+
+    $(document).ready(function () {
+        $("#exit").click(function (e) {
+            $.post("http://localhost:8080/gioco/api/exitParty.php", {
+                player_id: sessionStorage.getItem('id'),
+                party_id: sessionStorage.getItem('playing_party')
+            }, "json")
+                .fail(function () {
+                    alert("È stato riscontrato un errore inaspettato di cui non è possibile stabilire la causa.");
+                })
+                .done(function () {
+                    sessionStorage.setItem('playing_party', null);
+                    window.location.href = 'profile.html';
+                });
+        });
+    });
+
+    window.onload = onLoad();
+</script>
+

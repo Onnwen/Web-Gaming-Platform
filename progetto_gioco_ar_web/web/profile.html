@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <title>Profilo</title>
+</head>
+
+<body>
+<div class="background">
+    <div class="a"></div>
+    <div class="a"></div>
+</div>
+<form>
+    <h3>Profilo</h3>
+    <br>
+    <p class="infotext">Username</p>
+    <h2 id="user_username">-</h2>
+    <br>
+    <p class="infotext">Vittorie</p>
+    <h2 id="user_total_win">-</h2>
+    <button type="reset" id="submit">Gioca</button>
+    <!--
+    <button type="reset" class="other" onclick="window.location.href='changePassword.html'">Modifica password</button>
+    -->
+    <button type="reset" class="other" id="delete">Cancella account</button>
+    <button type="reset" class="other" id="logout">Esci</button>
+</form>
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script>
+    function loadUserData() {
+        $.post("http://localhost:8080/gioco/api/getAccountData.php", {
+            user_id: sessionStorage.getItem('id')
+        }, "json")
+            .fail(function () {
+                alert("È stato riscontrato un errore inaspettato di cui non è possibile stabilire la causa.");
+            })
+            .done(function (data) {
+                var json = JSON.parse(data)
+                document.getElementById("user_username").textContent = json.username;
+                document.getElementById("user_total_win").innerHTML = json.win;
+
+                sessionStorage.setItem('username', json.username);
+                sessionStorage.setItem('password', json.password);
+                sessionStorage.setItem('playing_party', json.playing_party);
+
+                if (json.playing_party != null) {
+                    document.getElementById("submit").innerHTML = "Esci dalla partita";
+                }
+            });
+    }
+
+    $(document).ready(function () {
+        $("#delete").click(function (e) {
+            if (confirm("Confermi di voler cancellare definitivamente il tuo account?") == true) {
+                $.post("http://localhost:8080/gioco/api/deleteAccount.php", {
+                    username: sessionStorage.getItem('username'),
+                    password: sessionStorage.getItem('password')
+                }, "json")
+                    .fail(function () {
+                        alert("È stato riscontrato un errore inaspettato di cui non è possibile stabilire la causa.");
+                    })
+                    .done(function () {
+                        sessionStorage.setItem('id', null);
+                        window.location.href='login.html'
+                    });
+            }
+        });
+    });
+
+    $(document).ready(function () {
+        $("#submit").click(function (e) {
+            if (sessionStorage.getItem('playing_party') != "null") {
+                $.post("http://localhost:8080/gioco/api/exitParty.php", {
+                    player_id: sessionStorage.getItem('id'),
+                    party_id: sessionStorage.getItem('playing_party')
+                }, "json")
+                    .fail(function () {
+                        alert("È stato riscontrato un errore inaspettato di cui non è possibile stabilire la causa.");
+                    })
+                    .done(function () {
+                        sessionStorage.setItem('playing_party', null);
+                        document.getElementById("submit").innerHTML = "Gioca";
+                    });
+            }
+            else {
+                window.location.href='searchingParty.html'
+            }
+        });
+    });
+
+    $(document).ready(function () {
+        $("#logout").click(function (e) {
+            sessionStorage.setItem('id', null);
+            sessionStorage.setItem('username', null);
+            sessionStorage.setItem('password', null);
+            sessionStorage.setItem('playing_party', null);
+            window.location.href='login.html'
+        });
+    });
+
+    window.onload = loadUserData;
+</script>
+
+</html>

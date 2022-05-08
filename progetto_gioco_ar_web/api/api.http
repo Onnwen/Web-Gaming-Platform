@@ -1,0 +1,2 @@
+GET http://localhost:8080/gioco/api/getPartyData.php?party_id=50bd48e5-8d84-462f-9de7-1f5ade7ea691
+Accept: application/json

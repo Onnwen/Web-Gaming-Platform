@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <title>Registrati</title>
+</head>
+
+<body>
+<div class="background">
+    <div class="a"></div>
+    <div class="a"></div>
+</div>
+<form>
+    <h3>Crea account</h3>
+    <label for="username">Username</label>
+    <input type="text" placeholder="Username" id="username" autocomplete="off">
+    <label for="password">Password</label>
+    <input type="password" placeholder="Password" id="password" autocomplete="off">
+    <button type="reset" id="submit">Registrati</button>
+    <button type="reset" class="other" onclick="window.location.href='login.html'">Vai al login</button>
+</form>
+<div id="message"></div>
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#submit").click(function (e) {
+            $.post("http://localhost:8080/gioco/api/register.php", {
+                username: $("#username").val(),
+                password: $("#password").val()
+            }, "json")
+                .fail(function () {
+                    alert("È stato riscontrato un errore inaspettato di cui non è possibile stabilire la causa.");
+                })
+                .done(function (data) {
+                    var json = JSON.parse(data)
+                    if (!json.created) {
+                        switch (json["status_id"]) {
+                            case 0:
+                                alert("L'account esiste già, verrai reindirizzato sulla pagina di login.");
+                                window.location.href='login.html'
+                                break;
+                            case 3:
+                                alert("Inserire uno username lungo almeno 4 caratteri e una password di almeno 6.");
+                                break;
+                            default:
+                                alert("E' stato riscontrato un errore inaspettato.");
+                                break;
+                        }
+                    }
+                    else {
+                        alert("L'account è stato creato, verrai reindirizzato sulla pagina di login.");
+                        window.location.href='login.html'
+                    }
+                });
+        });
+    });
+
+</script>
+
+</html>
