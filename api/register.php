@@ -11,7 +11,7 @@ function userId($un) {
 $username = $_POST['username'];
 $password = $_POST['password'];
 
-$con = mysqli_connect('localhost','root','','gioco');
+$con = mysqli_connect('52.47.52.89','onn','passwordSegretaDatabase','gioco');
 
 header("Access-Control-Allow-Origin: *");
 

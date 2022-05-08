@@ -2,7 +2,7 @@
 $username = $_POST['username'];
 $password = $_POST['password'];
 
-$con = mysqli_connect('13.38.107.67','onn','passwordSegretaDatabase','gioco');
+$con = mysqli_connect('52.47.52.89','onn','passwordSegretaDatabase','gioco');
 $sql = "SELECT * FROM `utenti` WHERE `username` = '".$username."' AND `password` = '".$password."'";
 
 header("Access-Control-Allow-Origin: *");
