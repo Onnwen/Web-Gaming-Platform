@@ -31,7 +31,7 @@ if ($partyData['winner_id'] == null) {
     }
 }
 
-$result = array('done' => boolval(true));
+$result = array('done' => true);
 $output = json_encode($result, JSON_PRETTY_PRINT);
 
 mysqli_close($con);
