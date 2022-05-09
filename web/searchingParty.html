@@ -55,25 +55,24 @@
                         alert("È stato riscontrato un errore inaspettato di cui non è possibile stabilire la causa.");
                     })
                     .done(function (data) {
-                        var json = JSON.parse(data);
-                        switch (json.status) {
+                        switch (data.status) {
                             case 0:
                                 document.getElementById("partyInfo").style.display = "block";
                                 document.getElementById("partyId").style.display = "block";
                                 document.getElementById('title').textContent = "Partita in corso"
                                 document.getElementById("loader").style.display = "none";
-                                document.getElementById('partyId').textContent = json.party_id;
-                                sessionStorage.setItem('playing_party', json.party_id)
+                                document.getElementById('partyId').textContent = data.party_id;
+                                sessionStorage.setItem('playing_party', data.party_id)
                                 break;
                             case 1:
-                                sessionStorage.setItem('playing_party', json.party_id)
+                                sessionStorage.setItem('playing_party', data.party_id)
                                 sleep(500).then(() => {
                                     runParty()
                                 });
                                 break;
                             case 2:
                                 document.getElementById('title').textContent = "In attesa di un giocatore..."
-                                sessionStorage.setItem('playing_party', json.party_id)
+                                sessionStorage.setItem('playing_party', data.party_id)
                                 setInterval(function () {
                                     checkParty();
                                 }, 1000)

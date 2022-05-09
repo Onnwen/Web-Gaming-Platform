@@ -3,8 +3,17 @@ $player_id = $_POST['player_id'];
 $party_id = $_POST['party_id'];
 
 header("Access-Control-Allow-Origin: *");
+header("Content-type: application/json");
 
-$con = mysqli_connect('localhost','root','','gioco');
+$con = mysqli_connect('52.47.52.89','onn','passwordSegretaDatabase','gioco1');
+
+if(mysqli_connect_errno()) {
+    $msg = "Database connection failed: ";
+    $msg .= mysqli_connect_error();
+    $msg .= " : " . mysqli_connect_errno();
+    exit($msg);
+}
+
 $updateUserSql = "UPDATE `utenti` SET `playing_party`= null WHERE `id` ='".$player_id."'";
 mysqli_query($con,$updateUserSql);
 $deleteObjectSql = "DELETE FROM `oggetti` WHERE `id_party` = '" . $party_id . "' and `id_player` ='".$player_id."'";

@@ -31,22 +31,21 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script>
     function loadUserData() {
-        $.post("http://localhost:8080/gioco/api/getAccountData.php", {
+        $.post("http://52.47.52.89/api/getAccountData.php", {
             user_id: sessionStorage.getItem('id')
         }, "json")
             .fail(function () {
                 alert("È stato riscontrato un errore inaspettato di cui non è possibile stabilire la causa.");
             })
             .done(function (data) {
-                var json = JSON.parse(data)
-                document.getElementById("user_username").textContent = json.username;
-                document.getElementById("user_total_win").innerHTML = json.win;
+                document.getElementById("user_username").textContent = data.username;
+                document.getElementById("user_total_win").innerHTML = data.win;
 
-                sessionStorage.setItem('username', json.username);
-                sessionStorage.setItem('password', json.password);
-                sessionStorage.setItem('playing_party', json.playing_party);
+                sessionStorage.setItem('username', data.username);
+                sessionStorage.setItem('password', data.password);
+                sessionStorage.setItem('playing_party', data.playing_party);
 
-                if (json.playing_party != null) {
+                if (data.playing_party != null) {
                     document.getElementById("submit").innerHTML = "Esci dalla partita";
                 }
             });
@@ -55,7 +54,7 @@
     $(document).ready(function () {
         $("#delete").click(function (e) {
             if (confirm("Confermi di voler cancellare definitivamente il tuo account?") == true) {
-                $.post("http://localhost:8080/gioco/api/deleteAccount.php", {
+                $.post("http://52.47.52.89/api/deleteAccount.php", {
                     username: sessionStorage.getItem('username'),
                     password: sessionStorage.getItem('password')
                 }, "json")

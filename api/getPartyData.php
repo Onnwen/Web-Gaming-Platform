@@ -1,7 +1,17 @@
 <?php
 $party_id = $_POST['party_id'];
 
-$con = mysqli_connect('localhost', 'root', '', 'gioco');
+header("Access-Control-Allow-Origin: *");
+header("Content-type: application/json");
+
+$con = mysqli_connect('52.47.52.89','onn','passwordSegretaDatabase','gioco1');
+
+if(mysqli_connect_errno()) {
+    $msg = "Database connection failed: ";
+    $msg .= mysqli_connect_error();
+    $msg .= " : " . mysqli_connect_errno();
+    exit($msg);
+}
 
 $playerIdSql = "SELECT `id` FROM `utenti` WHERE `playing_party` = '" . $party_id . "' ";
 $partyDataSql = "SELECT * FROM `partita` WHERE `id` = '" . $party_id . "'";
@@ -33,7 +43,6 @@ $result = array('id' => $partyData['id'],
     'players' => $players);
 
 $output = json_encode($result, JSON_PRETTY_PRINT);
-header("Access-Control-Allow-Origin: *");
 echo $output;
 mysqli_close($con);
 ?>

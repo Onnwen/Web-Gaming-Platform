@@ -70,7 +70,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script>
     function onLoad() {
-        $.post("http://localhost:8080/gioco/api/getPartyData.php", {
+        $.post("http://52.47.52.89/api/getPartyData.php", {
             party_id: sessionStorage.getItem('playing_party')
         }, "json")
             .fail(function () {
@@ -78,8 +78,6 @@
             })
             .done(function (data) {
                 var mesi = ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"]
-                var json = JSON.parse(data)
-                var date = json.started.split("-");
                 document.getElementById('date').textContent = parseInt(date[2]) + " " + mesi[parseInt(date[1])-1] + " " + date[0];
                 var ownIndex = (json.players[0].id == sessionStorage.getItem('id') == 0) ? 1 : 0;
                 var otherPlayerIndex = ownIndex ? 0 : 1;

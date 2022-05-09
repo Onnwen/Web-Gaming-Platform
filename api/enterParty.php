@@ -30,8 +30,16 @@ $longitude = $_POST['longitude'];
 $latitude = $_POST['latitude'];
 
 header("Access-Control-Allow-Origin: *");
+header("Content-type: application/json");
 
-$con = mysqli_connect('localhost', 'root', '', 'gioco');
+$con = mysqli_connect('52.47.52.89','onn','passwordSegretaDatabase','gioco1');
+
+if(mysqli_connect_errno()) {
+    $msg = "Database connection failed: ";
+    $msg .= mysqli_connect_error();
+    $msg .= " : " . mysqli_connect_errno();
+    exit($msg);
+}
 
 $userInfoSql = "SELECT * FROM `utenti` WHERE `id` = '" . $player_id . "'";
 $userInfo = mysqli_fetch_array(mysqli_query($con, $userInfoSql));
