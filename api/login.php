@@ -1,6 +1,6 @@
 <?php
-$username = $_POST['username'];
-$password = $_POST['password'];
+$username = $_GET['username'];
+$password = $_GET['password'];
 
 $con = mysqli_connect('52.47.52.89','onn','passwordSegretaDatabase','gioco');
 $sql = "SELECT * FROM `utenti` WHERE `username` = '".$username."' AND `password` = '".$password."'";
