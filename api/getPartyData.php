@@ -14,7 +14,7 @@ if(mysqli_connect_errno()) {
 }
 
 $playerIdSql = "SELECT `id` FROM `utenti` WHERE `playing_party` = '" . $party_id . "' ";
-$partyDataSql = "SELECT * FROM `partita` WHERE `id` = '" . $party_id . "'";
+$partyDataSql = "SELECT * FROM `partite` WHERE `id` = '" . $party_id . "'";
 
 $playersId = mysqli_fetch_all(mysqli_query($con, $playerIdSql));
 $partyData = mysqli_fetch_assoc(mysqli_query($con, $partyDataSql));

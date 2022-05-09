@@ -19,17 +19,20 @@ mysqli_query($con,$updateUserSql);
 $deleteObjectSql = "DELETE FROM `oggetti` WHERE `id_party` = '" . $party_id . "' and `id_player` ='".$player_id."'";
 mysqli_query($con, $deleteObjectSql);
 
-$partyDataSql = "SELECT * FROM `partita` WHERE `id` = '" . $party_id . "'";
+$partyDataSql = "SELECT * FROM `partite` WHERE `id` = '" . $party_id . "'";
 $partyData = mysqli_fetch_assoc(mysqli_query($con, $partyDataSql));
 
 if ($partyData['winner_id'] == null) {
     $partyUserSql = "SELECT `playing_party` FROM `utenti` WHERE `playing_party` IS NOT NULL";
     $partyUser = mysqli_fetch_all(mysqli_query($con, $partyUserSql));
     if (count($partyUser) < 1) {
-        $deletePartySql = "DELETE FROM `partita` WHERE `id` = '" . $party_id . "'";
+        $deletePartySql = "DELETE FROM `partite` WHERE `id` = '" . $party_id . "'";
         mysqli_query($con, $deletePartySql);
     }
 }
+
+$result = array('done' => boolval(true));
+$output = json_encode($result, JSON_PRETTY_PRINT);
 
 mysqli_close($con);
 ?>

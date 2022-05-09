@@ -14,7 +14,7 @@ if(mysqli_connect_errno()) {
 }
 
 $userInfoSql = "SELECT * FROM `utenti` WHERE `id` = '".$user_id."'";
-$userWinSql = "SELECT * FROM `partita` WHERE `winner_id` = '".$user_id."'";
+$userWinSql = "SELECT * FROM `partite` WHERE `winner_id` = '".$user_id."'";
 
 $res = mysqli_query($con,$userInfoSql);
 $array = mysqli_fetch_array($res);

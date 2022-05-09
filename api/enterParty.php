@@ -47,7 +47,7 @@ $userInfo = mysqli_fetch_array(mysqli_query($con, $userInfoSql));
 $result = array();
 
 if ($userInfo["playing_party"] == null) {
-    $runningPartySql = "SELECT `id` FROM `partita` WHERE `winner_id` IS NULL;";
+    $runningPartySql = "SELECT `id` FROM `partite` WHERE `winner_id` IS NULL;";
     $runningParty = mysqli_fetch_assoc(mysqli_query($con, $runningPartySql));
     $partyUserSql = "SELECT `playing_party` FROM `utenti` WHERE `playing_party` IS NOT NULL";
     $partyUser = mysqli_fetch_assoc(mysqli_query($con, $partyUserSql));
@@ -71,7 +71,7 @@ if ($userInfo["playing_party"] == null) {
 
     if ($partyFound == false) {
         $partyUUID = guidv4();
-        $newParty = "INSERT INTO `partita`(`id`) VALUES ('" . $partyUUID . "')";
+        $newParty = "INSERT INTO `partite`(`id`) VALUES ('" . $partyUUID . "')";
         mysqli_query($con, $newParty);
 
         $updateParty = "UPDATE `utenti` SET `playing_party`='" . $partyUUID . "' WHERE id ='" . $player_id . "'";
