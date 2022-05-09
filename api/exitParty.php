@@ -16,7 +16,7 @@ if(mysqli_connect_errno()) {
 
 $updateUserSql = "UPDATE `utenti` SET `playing_party`= null WHERE `id` ='".$player_id."'";
 mysqli_query($con,$updateUserSql);
-$deleteObjectSql = "DELETE FROM `oggetti` WHERE `id_party` = '" . $party_id . "' and `id_player` ='".$player_id."'";
+$deleteObjectSql = "DELETE FROM `oggetti` WHERE `party_id` = '" . $party_id . "' and `player_id` ='".$player_id."'";
 mysqli_query($con, $deleteObjectSql);
 
 $partyDataSql = "SELECT * FROM `partite` WHERE `id` = '" . $party_id . "'";
