@@ -29,8 +29,8 @@ foreach ($playersId as $playerId) {
     $playerCoordinate = mysqli_fetch_assoc(mysqli_query($con, $playerCoordinateSql));
     array_push($players, array('username' => $playerUsername['username'],
         'id' => $playerId[0],
-        'longitude' => floatval($playerCoordinate['longitude']),
-        'latitude' => floatval($playerCoordinate['latitude']),
+        'longitude' => doubleval($playerCoordinate['longitude']),
+        'latitude' => doubleval($playerCoordinate['latitude']),
         'index' => $i));
     $i += 1;
 }
