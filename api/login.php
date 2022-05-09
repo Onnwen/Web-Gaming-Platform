@@ -5,7 +5,7 @@ $password = $_POST['password'];
 header("Access-Control-Allow-Origin: *");
 header("Content-type: application/json");
 
-$con = mysqli_connect('52.47.52.89','on','passwordSegretaDatabase','gioco');
+$con = mysqli_connect('52.47.52.89','onn','passwordSegretaDatabase','gioco');
 
 if(mysqli_connect_errno()) {
     $msg = "Database connection failed: ";
