@@ -78,7 +78,7 @@
             })
             .done(function (data) {
                 var mesi = ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"];
-                var date = data.started.split("/");
+                var date = data.started.split("-");
                 document.getElementById('date').textContent = parseInt(date[2]) + " " + mesi[parseInt(date[1])-1] + " " + date[0];
                 var ownIndex = (data.players[0].id == sessionStorage.getItem('id') == 0) ? 1 : 0;
                 var otherPlayerIndex = ownIndex ? 0 : 1;
