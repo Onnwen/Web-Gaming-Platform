@@ -1,4 +1,4 @@
-GET http://52.47.52.89/api/login.php
+POST http://52.47.52.89/api/login.php
 Content-Type: application/x-www-form-urlencoded
 
 ###

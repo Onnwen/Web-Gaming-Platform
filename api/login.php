@@ -9,6 +9,13 @@ $con = mysqli_connect('52.47.52.89','onn','passwordSegretaDatabase','gioco');
 $sql = "SELECT * FROM `utenti` WHERE `username` = '".$username."' AND `password` = '".$password."'";
 
 $res = mysqli_query($con,$sql);
+
+if (res) {
+    echo("Connected!");
+}
+else {
+    echo("Connection failed.");
+}
 $array = mysqli_fetch_array($res);
 $result = array();
 
