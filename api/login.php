@@ -7,11 +7,11 @@ $password = $_GET['password'];
 $username = "ciao";
 $password = "ciao";
 
+header("Access-Control-Allow-Origin: *");
+header("Content-type: application/json");
+
 $con = mysqli_connect('52.47.52.89','onn','passwordSegretaDatabase','gioco');
 $sql = "SELECT * FROM `utenti` WHERE `username` = '".$username."' AND `password` = '".$password."'";
-
-header("Access-Control-Allow-Origin: *\r\n");
-header("Content-type: application/json\r\n");
 
 $res = mysqli_query($con,$sql);
 $array = mysqli_fetch_array($res);
