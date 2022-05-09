@@ -46,7 +46,7 @@
     function searchParty() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function (position) {
-                $.post("http://localhost:8080/gioco/api/enterParty.php", {
+                $.post("http://52.47.52.89/api/enterParty.php", {
                     player_id: sessionStorage.getItem('id'),
                     longitude: position.coords.longitude,
                     latitude: position.coords.latitude
