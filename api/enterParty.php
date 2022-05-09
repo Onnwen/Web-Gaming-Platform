@@ -71,7 +71,7 @@ if ($userInfo["playing_party"] == null) {
 
     if ($partyFound == false) {
         $partyUUID = guidv4();
-        $newParty = "INSERT INTO `partite`(`id`, `creation_date`) VALUES ('" . $partyUUID . "')";
+        $newParty = "INSERT INTO `partite`(`id`) VALUES ('" . $partyUUID . "')";
         mysqli_query($con, $newParty);
 
         $updateParty = "UPDATE `utenti` SET `playing_party`='" . $partyUUID . "' WHERE id ='" . $player_id . "'";
