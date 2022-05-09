@@ -1,6 +1,6 @@
 <?php
-$username = $_GET['username'];
-$password = $_GET['password'];
+$username = $_POST['username'];
+$password = $_POST['password'];
 
 header("Access-Control-Allow-Origin: *");
 header("Content-type: application/json");
@@ -10,12 +10,6 @@ $sql = "SELECT * FROM `utenti` WHERE `username` = '".$username."' AND `password`
 
 $res = mysqli_query($con,$sql);
 
-if (res) {
-    echo("Connected!");
-}
-else {
-    echo("Connection failed.");
-}
 $array = mysqli_fetch_array($res);
 $result = array();
 
