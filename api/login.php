@@ -17,18 +17,10 @@ if(mysqli_connect_errno()) {
 $sql = "SELECT * FROM `utenti` WHERE `username` = '".$username."' AND `password` = '".$password."'";
 
 $res = mysqli_query($con,$sql);
-
 $array = mysqli_fetch_array($res);
 $result = array();
-
-if ($array['id'] == 0) {
-    $result = array('exist' => boolval(false),
-        'id' => null);
-}
-else {
-    $result = array('exist' => boolval(true),
-        'id' => $array['id']);
-}
+$result = array('exist' => boolval($array['id'] != 0),
+    'id' => $array['id']);
 $output = json_encode($result, JSON_PRETTY_PRINT);
 
 echo $output;
