@@ -59,7 +59,7 @@ if ($userInfo["playing_party"] == null) {
             $partyFound = true;
 
             $updateParty = "UPDATE `utenti` SET `playing_party`='" . $party . "' WHERE id ='" . $player_id . "'";
-            $updateObject = "INSERT INTO `oggetti`(`id_player`, `id_party`, `latitude`, `longitude`) VALUES ('" . $player_id . "','" . $party . "','" . $latitude . "','" . $longitude . "')";
+            $updateObject = "INSERT INTO `oggetti`(`player_id`, `party_id`, `latitude`, `longitude`) VALUES ('" . $player_id . "','" . $party . "','" . $latitude . "','" . $longitude . "')";
             mysqli_query($con, $updateParty);
             mysqli_query($con, $updateObject);
 
@@ -75,7 +75,7 @@ if ($userInfo["playing_party"] == null) {
         mysqli_query($con, $newParty);
 
         $updateParty = "UPDATE `utenti` SET `playing_party`='" . $partyUUID . "' WHERE id ='" . $player_id . "'";
-        $updateObject = "INSERT INTO `oggetti`(`id_player`, `id_party`, `latitude`, `longitude`) VALUES ('" . $player_id . "','" . $partyUUID . "','" . $latitude . "','" . $longitude . "')";
+        $updateObject = "INSERT INTO `oggetti`(`player_id`, `party_id`, `latitude`, `longitude`) VALUES ('" . $player_id . "','" . $partyUUID . "','" . $latitude . "','" . $longitude . "')";
         mysqli_query($con, $updateParty);
         mysqli_query($con, $updateObject);
 
