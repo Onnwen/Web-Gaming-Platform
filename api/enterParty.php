@@ -32,9 +32,9 @@ $latitude = $_POST['latitude'];
 header("Access-Control-Allow-Origin: *");
 header("Content-type: application/json");
 
-$con = mysqli_connect('52.47.52.89','onn','passwordSegretaDatabase','gioco1');
+$con = mysqli_connect('52.47.52.89', 'onn', 'passwordSegretaDatabase', 'gioco1');
 
-if(mysqli_connect_errno()) {
+if (mysqli_connect_errno()) {
     $msg = "Database connection failed: ";
     $msg .= mysqli_connect_error();
     $msg .= " : " . mysqli_connect_errno();
@@ -78,7 +78,6 @@ if ($userInfo["playing_party"] == null) {
         $updateObject = "INSERT INTO `oggetti`(`id_player`, `id_party`, `latitude`, `longitude`) VALUES ('" . $player_id . "','" . $partyUUID . "','" . $latitude . "','" . $longitude . "')";
         mysqli_query($con, $updateParty);
         mysqli_query($con, $updateObject);
-
 
         $result = array('status' => 2,
             'party_id' => $partyUUID);
