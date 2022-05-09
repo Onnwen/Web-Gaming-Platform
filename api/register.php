@@ -24,7 +24,7 @@ if(mysqli_connect_errno()) {
 }
 
 $userId = userId($username);
-if ($userId <> 0) {
+if ($userId <> null) {
     $result = array('created' => boolval(false),
         'id' => $userId,
         'status_id' => 0);
@@ -34,7 +34,7 @@ else {
         $createUserSql = "INSERT INTO `utenti`(`id`, `username`, `password`) VALUES (UUID(),'" . $username . "','" . $password . "')";
         mysqli_query($con, $createUserSql);
         $id = userId($username);
-        if ($id == 0) {
+        if ($id == null) {
             $result = array('created' => boolval(false),
                 'id' => null,
                 'status_id' => 2);
