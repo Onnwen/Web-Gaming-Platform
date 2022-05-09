@@ -89,7 +89,7 @@
     }
 
     function checkParty() {
-        $.post("http://localhost:8080/gioco/api/partyCanStart.php", {
+        $.post("http://52.47.52.89/api/partyCanStart.php", {
             party_id: sessionStorage.getItem('playing_party')
         }, "json")
             .fail(function () {
