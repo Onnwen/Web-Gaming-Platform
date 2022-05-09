@@ -1,4 +1,4 @@
-GET http://52.47.52.89/api/login.php
+GET http://52.47.52.89/api/login.php?username=we&password=JE
 Content-Type: application/x-www-form-urlencoded
 
 ###
