@@ -5,18 +5,23 @@ $password = $_POST['password'];
 header("Access-Control-Allow-Origin: *");
 header("Content-type: application/json");
 
-$con = mysqli_connect('52.47.52.89','onn','passwordSegretaDatabase','gioco');
+$con = mysqli_connect('52.47.52.86','onn','passwordSegretaDatabase','gioco');
 $sql = "SELECT * FROM `utenti` WHERE `username` = '".$username."' AND `password` = '".$password."'";
 
 $res = mysqli_query($con,$sql);
 
+if (res) {
+    echo("Connected!");
+}
+else {
+    echo("Connection failed.");
+}
 $array = mysqli_fetch_array($res);
 $result = array();
 
 if ($array['id'] == 0) {
     $result = array('exist' => boolval(false),
-        'id' => null,
-        'username' => $username);
+        'id' => null);
 }
 else {
     $result = array('exist' => boolval(true),
