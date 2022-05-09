@@ -71,7 +71,7 @@ if ($userInfo["playing_party"] == null) {
 
     if ($partyFound == false) {
         $partyUUID = guidv4();
-        $newParty = "INSERT INTO `partite`(`id`, `creation_date`) VALUES ('" . $partyUUID . "', '" . date() . "')";
+        $newParty = "INSERT INTO `partite`(`id`, `creation_date`) VALUES ('" . $partyUUID . "', '" . date('m/d/Y h:i:s a', time()) . "')";
         mysqli_query($con, $newParty);
 
         $updateParty = "UPDATE `utenti` SET `playing_party`='" . $partyUUID . "' WHERE id ='" . $player_id . "'";
@@ -82,7 +82,7 @@ if ($userInfo["playing_party"] == null) {
 
         $result = array('status' => 2,
             'party_id' => $partyUUID,
-            'date' => date()
+            'date' => date('m/d/Y h:i:s a', time())
         );
     }
 } else {
