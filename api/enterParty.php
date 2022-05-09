@@ -81,7 +81,8 @@ if ($userInfo["playing_party"] == null) {
 
 
         $result = array('status' => 2,
-            'party_id' => $partyUUID
+            'party_id' => $partyUUID,
+            'date' => date()
         );
     }
 } else {

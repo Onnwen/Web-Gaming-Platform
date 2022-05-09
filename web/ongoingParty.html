@@ -77,7 +77,9 @@
                 alert("È stato riscontrato un errore inaspettato.");
             })
             .done(function (data) {
-                var mesi = ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"]
+                var mesi = ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"];
+                console.log("Ciao");
+                console.log(data['started']);
                 document.getElementById('date').textContent = parseInt(date[2]) + " " + mesi[parseInt(date[1])-1] + " " + date[0];
                 var ownIndex = (data.players[0].id == sessionStorage.getItem('id') == 0) ? 1 : 0;
                 var otherPlayerIndex = ownIndex ? 0 : 1;
