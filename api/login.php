@@ -15,7 +15,8 @@ $result = array();
 
 if ($array['id'] == 0) {
     $result = array('exist' => boolval(false),
-        'id' => null);
+        'id' => null,
+        'username' => $username);
 }
 else {
     $result = array('exist' => boolval(true),
