@@ -38,7 +38,7 @@ foreach ($playersId as $playerId) {
 $result = array();
 
 $result = array('id' => $partyData['id'],
-    'started' => date($partyData['creation']),
+    'started' => date($partyData['creation_date']),
     'winner' => $partyData['winner_id'],
     'players' => $players);
 

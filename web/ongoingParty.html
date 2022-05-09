@@ -79,14 +79,14 @@
             .done(function (data) {
                 var mesi = ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"]
                 document.getElementById('date').textContent = parseInt(date[2]) + " " + mesi[parseInt(date[1])-1] + " " + date[0];
-                var ownIndex = (json.players[0].id == sessionStorage.getItem('id') == 0) ? 1 : 0;
+                var ownIndex = (data.players[0].id == sessionStorage.getItem('id') == 0) ? 1 : 0;
                 var otherPlayerIndex = ownIndex ? 0 : 1;
-                document.getElementById('username').textContent = json.players[ownIndex].username;
-                document.getElementById('own_latitude').textContent = String(json.players[ownIndex].latitude).substring(0, 9);
-                document.getElementById('own_longitude').textContent = String(json.players[ownIndex].longitude).substring(0, 9);
-                document.getElementById('other_player_username').textContent = json.players[otherPlayerIndex].username;
-                document.getElementById('other_player_latitude').textContent = String(json.players[otherPlayerIndex].latitude).substring(0, 9);
-                document.getElementById('other_player_longitude').textContent = String(json.players[otherPlayerIndex].longitude).substring(0, 9);
+                document.getElementById('username').textContent = data.players[ownIndex].username;
+                document.getElementById('own_latitude').textContent = String(data.players[ownIndex].latitude).substring(0, 9);
+                document.getElementById('own_longitude').textContent = String(data.players[ownIndex].longitude).substring(0, 9);
+                document.getElementById('other_player_username').textContent = data.players[otherPlayerIndex].username;
+                document.getElementById('other_player_latitude').textContent = String(data.players[otherPlayerIndex].latitude).substring(0, 9);
+                document.getElementById('other_player_longitude').textContent = String(data.players[otherPlayerIndex].longitude).substring(0, 9);
                 if (ownIndex == 1) {
                     document.getElementById("other_player_color_start").style = "stop-color:#1845ad; stop-opacity:1";
                     document.getElementById("other_player_color_end").style = "stop-color:#23a2f6;s top-opacity:1";
