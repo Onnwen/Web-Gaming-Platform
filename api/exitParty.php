@@ -31,6 +31,5 @@ if ($partyData['winner_id'] == null) {
     }
 }
 
-echo "done";
 mysqli_close($con);
 ?>
