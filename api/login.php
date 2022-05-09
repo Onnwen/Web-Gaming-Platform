@@ -18,7 +18,6 @@ $sql = "SELECT * FROM `utenti` WHERE `username` = '".$username."' AND `password`
 
 $res = mysqli_query($con,$sql);
 $array = mysqli_fetch_array($res);
-$result = array();
 $result = array('exist' => $array['id'] != "0" && $array['id'] != null,
     'id' => $array['id']);
 $output = json_encode($result, JSON_PRETTY_PRINT);
