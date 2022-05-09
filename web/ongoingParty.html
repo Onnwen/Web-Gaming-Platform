@@ -98,7 +98,7 @@
 
     $(document).ready(function () {
         $("#exit").click(function (e) {
-            $.post("http://localhost:8080/gioco/api/exitParty.php", {
+            $.post("http://52.47.52.89/api/exitParty.php", {
                 player_id: sessionStorage.getItem('id'),
                 party_id: sessionStorage.getItem('playing_party')
             }, "json")
