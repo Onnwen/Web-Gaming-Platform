@@ -34,9 +34,8 @@
                     alert("È stato riscontrato un errore inaspettato.");
                 })
                 .done(function (data) {
-                    var json = JSON.parse(data)
-                    if (json.exist) {
-                        sessionStorage.setItem('id', json.id)
+                    if (data.exist) {
+                        sessionStorage.setItem('id', data.id)
                         window.location.href = 'profile.html'
                     } else {
                         alert("Credenziali errate.");
