@@ -1,6 +1,6 @@
 <?php
 function userId($un) {
-    $userExitCon = http://52.47.52.89/mysqli_connect('52.47.52.89','onn','passwordSegretaDatabase','gioco1');
+    $userExitCon = mysqli_connect('52.47.52.89','onn','passwordSegretaDatabase','gioco1');
     $userExistSql = "SELECT * FROM `utenti` WHERE `username` = '".$un."'";
     $res = mysqli_query($userExitCon,$userExistSql);
     $array = mysqli_fetch_array($res);
