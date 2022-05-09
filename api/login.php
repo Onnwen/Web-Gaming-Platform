@@ -1,16 +1,9 @@
 <?php
-/*
 $username = $_GET['username'];
 $password = $_GET['password'];
-*/
-
-$username = "ciao";
-$password = "ciao";
 
 header("Access-Control-Allow-Origin: *");
 header("Content-type: application/json");
-
-echo("Working");
 
 $con = mysqli_connect('52.47.52.89','onn','passwordSegretaDatabase','gioco');
 $sql = "SELECT * FROM `utenti` WHERE `username` = '".$username."' AND `password` = '".$password."'";
