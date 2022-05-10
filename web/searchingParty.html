@@ -44,7 +44,7 @@
     }
 
     function searchParty() {
-        $.post("http://garamante.it/api/enterParty.php", {
+        $.post("https://garamante.it/api/enterParty.php", {
             player_id: sessionStorage.getItem('id'),
             longitude: "45.123456789",
             latitude: "45.123456789"
@@ -81,7 +81,7 @@
         /*
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function (position) {
-                $.post("http://garamante.it/api/enterParty.php", {
+                $.post("https://garamante.it/api/enterParty.php", {
                     player_id: sessionStorage.getItem('id'),
                     longitude: position.coords.longitude,
                     latitude: position.coords.latitude
@@ -125,7 +125,7 @@
     }
 
     function checkParty() {
-        $.post("http://garamante.it/api/partyCanStart.php", {
+        $.post("https://garamante.it/api/partyCanStart.php", {
             party_id: sessionStorage.getItem('playing_party')
         }, "json")
             .fail(function () {

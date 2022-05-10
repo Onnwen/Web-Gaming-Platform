@@ -1,5 +1,5 @@
-POST http://garamante.it/api/exitParty.php
+POST https://garamante.it/api/login.php
 Content-Type: application/x-www-form-urlencoded
 
-player_id=fb0d8295-8f26-4145-a059-7ec218a3f3c2&party_id=fb0d8295-8f26-4145-a059-7ec218a3f3c2
+username=test&password=test
 ###
