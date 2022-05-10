@@ -2,4 +2,10 @@ POST https://garamante.it/API/login.php
 Content-Type: application/x-www-form-urlencoded
 
 username=test&password=test
+
 ###
+
+POST https://garamante.it/API/register.php
+Content-Type: application/x-www-form-urlencoded
+
+username=test&password=test
