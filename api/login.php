@@ -3,6 +3,7 @@ $username = $_POST['username'];
 $password = $_POST['password'];
 
 header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Headers: *");
 header("Content-type: application/json");
 
 $con = mysqli_connect('52.47.52.89','onn','passwordSegretaDatabase','gioco1');
