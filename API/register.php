@@ -8,6 +8,25 @@ function userId($un) {
     return $array['id'];
 }
 
+function get_client_ip() {
+    $ipaddress = '';
+    if (getenv('HTTP_CLIENT_IP'))
+        $ipaddress = getenv('HTTP_CLIENT_IP');
+    else if(getenv('HTTP_X_FORWARDED_FOR'))
+        $ipaddress = getenv('HTTP_X_FORWARDED_FOR');
+    else if(getenv('HTTP_X_FORWARDED'))
+        $ipaddress = getenv('HTTP_X_FORWARDED');
+    else if(getenv('HTTP_FORWARDED_FOR'))
+        $ipaddress = getenv('HTTP_FORWARDED_FOR');
+    else if(getenv('HTTP_FORWARDED'))
+        $ipaddress = getenv('HTTP_FORWARDED');
+    else if(getenv('REMOTE_ADDR'))
+        $ipaddress = getenv('REMOTE_ADDR');
+    else
+        $ipaddress = 'UNKNOWN';
+    return $ipaddress;
+}
+
 $username = $_POST['username'];
 $password = $_POST['password'];
 
@@ -31,7 +50,7 @@ if ($userId <> null) {
 }
 else {
     if (count_chars($username) > 4 && count_chars($password) > 6) {
-        $createUserSql = "INSERT INTO `utenti`(`id`, `username`, `password`) VALUES (UUID(),'" . $username . "','" . $password . "')";
+        $createUserSql = "INSERT INTO `utenti`(`id`, `username`, `password`, `created_by_ip`) VALUES (UUID(),'" . $username . "','" . $password . "', '" . get_client_ip() . "')";
         mysqli_query($con, $createUserSql);
         $id = userId($username);
         if ($id == null) {
