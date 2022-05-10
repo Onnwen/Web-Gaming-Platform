@@ -27,11 +27,11 @@ foreach ($playersId as $playerId) {
     $playerUsername = mysqli_fetch_assoc(mysqli_query($con, $playerIdSql));
     $playerCoordinateSql = "SELECT `latitude`, `longitude` FROM `oggetti` WHERE `id_player` = '" . $playerId[0] . "' AND `id_party` = '" . $party_id . "' ";
     $playerCoordinate = mysqli_fetch_assoc(mysqli_query($con, $playerCoordinateSql));
-    array_push($players, array('username' => $playerUsername['username'],
+    $players[] = array('username' => $playerUsername['username'],
         'id' => $playerId[0],
         'longitude' => doubleval($playerCoordinate['longitude']),
         'latitude' => doubleval($playerCoordinate['latitude']),
-        'index' => $i));
+        'index' => $i);
     $i += 1;
 }
 

@@ -1,11 +1,11 @@
 @font-face {
     font-family: regular;
-    src: url(../fonts/Poppins-Regular.ttf);
+    src: url(../Fonts/Poppins-Regular.ttf);
 }
 
 @font-face {
     font-family: medium;
-    src: url(../fonts/Poppins-Medium.ttf);
+    src: url(../Fonts/Poppins-Medium.ttf);
 }
 
 *,
@@ -50,11 +50,6 @@ h3 {
     100% {
         transform: rotate(120deg);
     }
-}
-
-.particle {
-    position: absolute;
-    border-radius: 50%;
 }
 
 .background .a {
@@ -149,12 +144,7 @@ button:hover {
     border-radius: 5px;
 }
 
-.social {
-    margin-top: 30px;
-    display: flex;
-}
-
-.social div {
+.div {
     width: 150px;
     border-radius: 3px;
     padding: 5px 10px 10px 5px;
@@ -163,15 +153,11 @@ button:hover {
     text-align: center;
 }
 
-.social div:hover {
+.div:hover {
     background-color: rgba(255, 255, 255, 0.47);
 }
 
-.social .fb {
-    margin-left: 25px;
-}
-
-.social i {
+.i {
     margin-right: 4px;
 }
 

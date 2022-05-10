@@ -6,5 +6,8 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="jquery" level="application" />
+    <orderEntry type="library" name="aframe" level="application" />
+    <orderEntry type="library" name="aframe-look-at-component" level="application" />
+    <orderEntry type="library" name="aframe-ar-nft" level="application" />
   </component>
 </module>

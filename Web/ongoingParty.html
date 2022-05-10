@@ -70,7 +70,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script>
     function onLoad() {
-        $.post("https://garamante.it/api/getPartyData.php", {
+        $.post("https://garamante.it/API/getPartyData.php", {
             party_id: sessionStorage.getItem('playing_party')
         }, "json")
             .fail(function () {
@@ -81,7 +81,7 @@
                 let date = data.started.split("-");
                 document.getElementById('date').textContent = parseInt(date[2]) + " " + mesi[parseInt(date[1])-1] + " " + date[0];
                 let ownIndex = (data.players[0].id == sessionStorage.getItem('id')) ? 1 : 0;
-                var otherPlayerIndex = ownIndex ? 0 : 1;
+                let otherPlayerIndex = ownIndex ? 0 : 1;
                 document.getElementById('username').textContent = data.players[ownIndex].username;
                 document.getElementById('own_latitude').textContent = String(data.players[ownIndex].latitude).substring(0, 9);
                 document.getElementById('own_longitude').textContent = String(data.players[ownIndex].longitude).substring(0, 9);
@@ -99,7 +99,7 @@
 
     $(document).ready(function () {
         $("#exit").click(function () {
-            $.post("https://garamante.it/api/exitParty.php", {
+            $.post("https://garamante.it/API/exitParty.php", {
                 player_id: sessionStorage.getItem('id'),
                 party_id: sessionStorage.getItem('playing_party')
             }, "json")

@@ -1,5 +1,5 @@
 function login() {
-    $.post("https://garamante.it/api/login.php", {
+    $.post("https://garamante.it/API/login.php", {
         username: $("#username").val(),
         password: $("#password").val()
     }, "json")
@@ -17,7 +17,7 @@ function login() {
 }
 
 function register() {
-    $.post("https://garamante.it/api/register.php", {
+    $.post("https://garamante.it/API/register.php", {
         username: $("#username").val(),
         password: $("#password").val()
     }, "json")
@@ -47,7 +47,7 @@ function register() {
 }
 
 function getPartyData() {
-    $.post("https://garamante.it/api/getPartyData.php", {
+    $.post("https://garamante.it/API/getPartyData.php", {
         party_id: sessionStorage.getItem('playing_party')
     }, "json")
         .fail(function () {
@@ -58,7 +58,7 @@ function getPartyData() {
             let date = data.started.split("-");
             document.getElementById('date').textContent = parseInt(date[2]) + " " + mesi[parseInt(date[1])-1] + " " + date[0];
             let ownIndex = (data.players[0].id == sessionStorage.getItem('id')) ? 1 : 0;
-            var otherPlayerIndex = ownIndex ? 0 : 1;
+            let otherPlayerIndex = ownIndex ? 0 : 1;
             document.getElementById('username').textContent = data.players[ownIndex].username;
             document.getElementById('own_latitude').textContent = String(data.players[ownIndex].latitude).substring(0, 9);
             document.getElementById('own_longitude').textContent = String(data.players[ownIndex].longitude).substring(0, 9);
@@ -75,7 +75,7 @@ function getPartyData() {
 }
 
 function getAccountData() {
-    $.post("https://garamante.it/api/getAccountData.php", {
+    $.post("https://garamante.it/API/getAccountData.php", {
         user_id: sessionStorage.getItem('id')
     }, "json")
         .fail(function () {
@@ -96,7 +96,7 @@ function getAccountData() {
 }
 
 function exitParty() {
-    $.post("https://garamante.it/api/exitParty.php", {
+    $.post("https://garamante.it/API/exitParty.php", {
         player_id: sessionStorage.getItem('id'),
         party_id: sessionStorage.getItem('playing_party')
     }, "json")
@@ -111,7 +111,7 @@ function exitParty() {
 
 function deleteAccount() {
     if (confirm("Confermi di voler cancellare definitivamente il tuo account?") == true) {
-        $.post("https://garamante.it/api/deleteAccount.php", {
+        $.post("https://garamante.it/API/deleteAccount.php", {
             username: sessionStorage.getItem('username'),
             password: sessionStorage.getItem('password')
         }, "json")
@@ -134,7 +134,7 @@ function resetSessionStorage() {
 }
 
 function partyCanStart() {
-    $.post("https://garamante.it/api/partyCanStart.php", {
+    $.post("https://garamante.it/API/partyCanStart.php", {
         party_id: sessionStorage.getItem('playing_party')
     }, "json")
         .fail(function () {
