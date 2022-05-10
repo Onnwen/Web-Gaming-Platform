@@ -26,11 +26,11 @@ body {
 }
 
 * {
-    font-family: regular;
+    font-family: regular, sans-serif;
 }
 
 h3 {
-    font-family: medium;
+    font-family: medium, sans-serif;
 }
 
 .background {
@@ -81,7 +81,7 @@ form {
 
 form * {
     color: #ffffff;
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
     outline: none;
     border: none;
 }
@@ -155,11 +155,10 @@ button:hover {
 }
 
 .social div {
-    background: red;
     width: 150px;
     border-radius: 3px;
     padding: 5px 10px 10px 5px;
-    background-color: rgba(255, 255, 255, 0.27);
+    background: rgba(255, 255, 255, 0.27);
     color: #eaf0fb;
     text-align: center;
 }
@@ -217,8 +216,6 @@ button:hover {
 
 div.split2 div {
     float: left;
-    width: 49%;
-    width: 49%;
     width: 49%;
     padding: 0.2%;
 }

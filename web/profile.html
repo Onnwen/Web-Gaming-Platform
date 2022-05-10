@@ -52,7 +52,7 @@
     }
 
     $(document).ready(function () {
-        $("#delete").click(function (e) {
+        $("#delete").click(function () {
             if (confirm("Confermi di voler cancellare definitivamente il tuo account?") == true) {
                 $.post("https://garamante.it/api/deleteAccount.php", {
                     username: sessionStorage.getItem('username'),
@@ -70,7 +70,7 @@
     });
 
     $(document).ready(function () {
-        $("#submit").click(function (e) {
+        $("#submit").click(function () {
             if (sessionStorage.getItem('playing_party') != "null") {
                 $.post("https://garamante.it/api/exitParty.php", {
                     player_id: sessionStorage.getItem('id'),
@@ -91,7 +91,7 @@
     });
 
     $(document).ready(function () {
-        $("#logout").click(function (e) {
+        $("#logout").click(function () {
             sessionStorage.setItem('id', null);
             sessionStorage.setItem('username', null);
             sessionStorage.setItem('password', null);

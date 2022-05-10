@@ -25,7 +25,7 @@ if(mysqli_connect_errno()) {
 
 $userId = userId($username);
 if ($userId <> null) {
-    $result = array('created' => boolval(false),
+    $result = array('created' => false,
         'id' => $userId,
         'status_id' => 0);
 }
@@ -35,17 +35,17 @@ else {
         mysqli_query($con, $createUserSql);
         $id = userId($username);
         if ($id == null) {
-            $result = array('created' => boolval(false),
+            $result = array('created' => false,
                 'id' => null,
                 'status_id' => 2);
         } else {
-            $result = array('created' => boolval(true),
+            $result = array('created' => true,
                 'id' => $id,
                 'status_id' => 1);
         }
     }
     else {
-        $result = array('created' => boolval(false),
+        $result = array('created' => false,
             'id' => null,
             'status_id' => 3);
     }
@@ -55,4 +55,3 @@ $output = json_encode($result, JSON_PRETTY_PRINT);
 
 echo $output;
 mysqli_close($con);
-?>

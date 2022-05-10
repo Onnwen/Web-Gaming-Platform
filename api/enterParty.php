@@ -1,4 +1,7 @@
 <?php
+/**
+ * @throws Exception
+ */
 function guidv4($data = null)
 {
     // Generate 16 bytes (128 bits) of random data or use the data passed into the function.
@@ -14,7 +17,7 @@ function guidv4($data = null)
     return vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($data), 4));
 }
 
-function totalPlayersInParty($party, $partys)
+function totalPlayersInParty($party, $partys): int
 {
     $totalP = 0;
     foreach ($partys as $p) {
@@ -70,17 +73,21 @@ if ($userInfo["playing_party"] == null) {
     }
 
     if ($partyFound == false) {
-        $partyUUID = guidv4();
-        $newParty = "INSERT INTO `partite`(`id`) VALUES ('" . $partyUUID . "')";
-        mysqli_query($con, $newParty);
+        try {
+            $partyUUID = guidv4();
+            $newParty = "INSERT INTO `partite`(`id`) VALUES ('" . $partyUUID . "')";
+            mysqli_query($con, $newParty);
 
-        $updateParty = "UPDATE `utenti` SET `playing_party`='" . $partyUUID . "' WHERE id ='" . $player_id . "'";
-        $updateObject = "INSERT INTO `oggetti`(`player_id`, `party_id`, `latitude`, `longitude`) VALUES ('" . $player_id . "','" . $partyUUID . "','" . $latitude . "','" . $longitude . "')";
-        mysqli_query($con, $updateParty);
-        mysqli_query($con, $updateObject);
-
-        $result = array('status' => 2,
-            'party_id' => $partyUUID);
+            $updateParty = "UPDATE `utenti` SET `playing_party`='" . $partyUUID . "' WHERE id ='" . $player_id . "'";
+            $updateObject = "INSERT INTO `oggetti`(`player_id`, `party_id`, `latitude`, `longitude`) VALUES ('" . $player_id . "','" . $partyUUID . "','" . $latitude . "','" . $longitude . "')";
+            mysqli_query($con, $updateParty);
+            mysqli_query($con, $updateObject);
+            $result = array('status' => 2,
+                'party_id' => $partyUUID);
+        } catch (Exception $e) {
+            $result = array('status' => 4,
+                'party_id' => null);
+        }
     }
 } else {
     $result = array('status' => 0,
@@ -91,4 +98,3 @@ if ($userInfo["playing_party"] == null) {
 $output = json_encode($result, JSON_PRETTY_PRINT);
 echo $output;
 mysqli_close($con);
-?>

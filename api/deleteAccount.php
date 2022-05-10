@@ -20,4 +20,3 @@ $res = mysqli_query($con,$sql);
 
 echo "done";
 mysqli_close($con);
-?>

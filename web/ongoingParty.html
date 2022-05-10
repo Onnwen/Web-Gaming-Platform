@@ -77,10 +77,10 @@
                 alert("È stato riscontrato un errore inaspettato.");
             })
             .done(function (data) {
-                var mesi = ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"];
-                var date = data.started.split("-");
+                let mesi = ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"];
+                let date = data.started.split("-");
                 document.getElementById('date').textContent = parseInt(date[2]) + " " + mesi[parseInt(date[1])-1] + " " + date[0];
-                var ownIndex = (data.players[0].id == sessionStorage.getItem('id') == 0) ? 1 : 0;
+                let ownIndex = (data.players[0].id == sessionStorage.getItem('id')) ? 1 : 0;
                 var otherPlayerIndex = ownIndex ? 0 : 1;
                 document.getElementById('username').textContent = data.players[ownIndex].username;
                 document.getElementById('own_latitude').textContent = String(data.players[ownIndex].latitude).substring(0, 9);
@@ -98,7 +98,7 @@
     }
 
     $(document).ready(function () {
-        $("#exit").click(function (e) {
+        $("#exit").click(function () {
             $.post("https://garamante.it/api/exitParty.php", {
                 player_id: sessionStorage.getItem('id'),
                 party_id: sessionStorage.getItem('playing_party')
