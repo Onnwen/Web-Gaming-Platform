@@ -20,14 +20,15 @@
 
         <p style="font-size: 20px; margin-top: 16px;" id="partyInfo">
             ID PARITA:
-        <div id="partyId" style="margin-bottom: 40px; font-size: 14px;"></div>
         </p>
+        <div id="partyId" style="margin-bottom: 40px; font-size: 14px;"></div>
 
         <p class="infotext">
             Il tuo identificativo è
             <br>
-        <div class="infotext" id="message"></div>
         </p>
+        <div class="infotext" id="message"></div>
+
     </div>
 </form>
 
@@ -35,7 +36,7 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script>
-    function codeAddress() {
+    function setInfo() {
         document.getElementById("partyInfo").style.display = "none";
         document.getElementById("partyId").style.display = "none";
         const div = document.getElementById('message');
@@ -149,6 +150,6 @@
         });
     }
 
-    window.onload = codeAddress;
+    window.onload = setInfo();
 </script>
 </html>
