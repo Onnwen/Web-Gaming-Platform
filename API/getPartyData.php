@@ -39,7 +39,7 @@ $result = array();
 
 $result = array('id' => $partyData['id'],
     'started' => date($partyData['creation_date']),
-    'winner' => $partyData['winner_id'],
+    'winner_id' => $partyData['winner_id'],
     'players' => $players);
 
 $output = json_encode($result, JSON_PRETTY_PRINT);
