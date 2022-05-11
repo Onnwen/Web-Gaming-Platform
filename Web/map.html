@@ -18,10 +18,10 @@
 <div id="map"></div>
 
 <script>
-    const tokenID = "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlJMN0M3OEEzMlcifQ.eyJpc3MiOiJpdC5nYXJhbWFudGUubWFwIiwiaWF0IjoxNjUyMjc2NzcwLCJleHAiOjE2NTQ4Njg2MzksIm9yaWdpbiI6ImdhcmFtYW50ZS5pdCJ9.oOd2yNYx5Jl-TAdZzmrh0J1EkQB3vL0rAk7eTX3LKiOeXXEea-mwznkA5A1m766OvqnwSokfyytrjHRjjQVWLQ";
+    const tokenID = "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlhLSlFYUUpSM1UifQ.eyJpc3MiOiJjb20uZ2FyYW1hbnRlLnRlc3QiLCJpYXQiOjE2NTIyNzgyOTEsImV4cCI6MTY1NDg3MDI1OH0.EAe3dkjEZgPn21ERNRKA6Lvu7e5gen5sBDQS1cTIxvHQJIlIyqUgqBOYufxL5vao6Lra4jy06IdQa3078WvOKg";
 
     mapkit.init({
-        authorizationCallback: function (done) {
+        authorizationCallback: function(done) {
             done(tokenID);
         }
     });
