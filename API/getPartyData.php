@@ -25,7 +25,7 @@ $i = 0;
 foreach ($playersId as $playerId) {
     $playerIdSql = "SELECT `username` FROM `utenti` WHERE `id` = '" . $playerId[0] . "' ";
     $playerUsername = mysqli_fetch_assoc(mysqli_query($con, $playerIdSql));
-    $playerCoordinateSql = "SELECT `latitude`, `longitude` FROM `oggetti` WHERE `id_player` = '" . $playerId[0] . "' AND `id_party` = '" . $party_id . "' ";
+    $playerCoordinateSql = "SELECT `latitude`, `longitude` FROM `oggetti` WHERE `player_id` = '" . $playerId[0] . "' AND `party_id` = '" . $party_id . "' ";
     $playerCoordinate = mysqli_fetch_assoc(mysqli_query($con, $playerCoordinateSql));
     $players[] = array('username' => $playerUsername['username'],
         'id' => $playerId[0],
