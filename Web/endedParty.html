@@ -68,8 +68,7 @@
 <script>
     function onLoad() {
         $.post("https://garamante.it/API/getPartyData.php", {
-            party_id: "4e327eb3-7cf0-4b53-bdf4-c334d56f5470"
-            //party_id: sessionStorage.getItem('playing_party')
+            party_id: sessionStorage.getItem('playing_party')
         }, "json")
             .fail(function () {
                 alert("È stato riscontrato un errore inaspettato.");
