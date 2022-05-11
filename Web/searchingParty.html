@@ -39,45 +39,7 @@
         searchParty();
     }
 
-    /*
     function searchParty() {
-        $.post("https://garamante.it/API/enterParty.php", {
-            player_id: sessionStorage.getItem('id'),
-            longitude: "45.123456789",
-            latitude: "45.123456789"
-        }, "json")
-            .fail(function () {
-                alert("È stato riscontrato un errore inaspettato di cui non è possibile stabilire la causa.");
-            })
-            .done(function (data) {
-                switch (data.status) {
-                    case 0:
-                        document.getElementById("partyInfo").style.display = "block";
-                        document.getElementById("partyId").style.display = "block";
-                        document.getElementById('title').textContent = "Partita in corso"
-                        document.getElementById("loader").style.display = "none";
-                        document.getElementById('partyId').textContent = data.party_id;
-                        sessionStorage.setItem('playing_party', data.party_id)
-                        break;
-                    case 1:
-                        sessionStorage.setItem('playing_party', data.party_id)
-                        sleep(500).then(() => {
-                            runParty()
-                        });
-                        break;
-                    case 2:
-                        document.getElementById('title').textContent = "In attesa di un giocatore..."
-                        sessionStorage.setItem('playing_party', data.party_id)
-                        setInterval(function () {
-                            checkParty();
-                        }, 1000)
-                        break;
-                }
-            });
-
-     */
-
-
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function (position) {
                 $.post("https://garamante.it/API/enterParty.php", {
@@ -120,8 +82,7 @@
             document.getElementById("partyId").style.display = "block";
             document.getElementById('partyId').textContent = json.party_id;
         }
-
-
+    }
 
     function checkParty() {
         $.post("https://garamante.it/API/partyCanStart.php", {
