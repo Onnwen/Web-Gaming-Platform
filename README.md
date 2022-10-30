@@ -1,4 +1,4 @@
-# Piattaforma di gioco AR
+# Piattaforma di gioco
 Questa piattaforma permette dal portale di registrare nuovi utenti, collegarsi nel sistema con le proprie credenziali d’accesso, avviare nuove partite, visualizzare le
 statistiche di gioco e il resoconto di ogni partita con, tra l’altro, l’implementazione di mappe dinamiche e interattive.
 Il portale è interamente accessibile da browser web ed’è stato realizzato in
